@@ -1,4 +1,5 @@
 const fakeImageAPI = () => {
+    const useLivePicsumAPI = false;
     const sizes = [
         { width: 640, height: 480, isPortrait: false, placeholderUrl: 'img/placeholder/4x3.png' },
         { width: 480, height: 640, isPortrait: true, placeholderUrl: 'img/placeholder/3x4.png' },
@@ -9,8 +10,17 @@ const fakeImageAPI = () => {
     ];
     const randomSizeIndex = Math.round(Math.random() * (sizes.length - 1));
     const sizeData = sizes[randomSizeIndex];
+    const imageNumbers = [40, 50, 78, 30, 18, 45, 16, 68, 35, 28];
+    const randomImageNumberIndex = Math.round(Math.random() * (imageNumbers.length - 1));
     const randomImageNumber = 10 + Math.round(Math.random() * 70);
-    const url = `https://picsum.photos/${sizeData.width}/${sizeData.height}/?image=${randomImageNumber}`;
+
+    let url;
+    if (useLivePicsumAPI) {
+         url = `https://picsum.photos/${sizeData.width}/${sizeData.height}/?image=${randomImageNumber}`;
+    } else {
+        url = `img/crops/${sizeData.width}x${sizeData.height}_${imageNumbers[randomImageNumberIndex]}.jpg`;
+    }
+   
     const imageData = {
         isPortrait: sizeData.isPortrait,
         sources: [
