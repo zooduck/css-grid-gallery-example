@@ -1,0 +1,196 @@
+.grid {
+    margin: auto;
+    max-width: 1024px;
+    width: calc(100vw - 20px);
+    margin-bottom: 250px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    user-select: none;
+    gap: 5px;
+}
+
+.grid .image-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.grid .image-container img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    background-color: whitesmoke;
+}
+
+.grid--strict .image-container img {
+    max-width: unset;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.grid--strict .image-container--portrait img {
+    max-width: 100%;
+}
+
+.grid--strict img.image-container__image-portrait {
+    height: auto;
+    width: 100%;
+}
+
+/* default (landscape) */
+.grid--strict .image-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* portrait */
+.grid--strict .image-container--portrait, .grid--strict .image-container--portrait-south, .grid--strict .image-container--portrait-north {
+    align-items: center;
+}
+.grid--strict .image-container--portrait img, .grid--strict .image-container--portrait-south img, .grid--strict .image-container--portrait-north img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* portrait "cropped" at bottom */
+.grid--strict .image-container--portrait-south {
+    align-items: flex-end !important;
+}
+.grid--strict .image-container--portrait-south img {
+    top: unset;
+    bottom: 0;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* portrait "cropped" at top */
+.grid--strict .image-container--portrait-north {
+    align-items: flex-start !important;
+}
+.grid--strict .image-container--portrait-north img {
+    bottom: unset;
+    top: 0;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* landscape "cropped" at right */
+.grid--strict .image-container--landscape-west {
+    justify-content: flex-start;
+}
+.grid--strict .image-container--landscape-west img {
+    margin-left: 0;
+    right: unset;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+}
+
+/* landscape "cropped" at left */
+.grid--strict .image-container--landscape-east {
+    justify-content: flex-end;
+}
+.grid--strict .image-container--landscape-east img {
+    margin-right: 0;
+    left: unset;
+    top: 0;
+    right: 0;
+    transform: translate(0, 0);
+}
+
+.image-container>img[data-src],
+.image-container :not(noscript) img {
+    display: none;
+}
+
+.image-container[js-active] img {
+    display: block;
+}
+
+.image-container__icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    color: #fff;
+}
+
+.image-container__focus-area-clickable {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container__focus-area-clickable__icon {
+    color: #fff;
+    cursor: pointer;
+}
+
+.grid__crop-adjust-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    max-height: calc((100vw - 20px) / 3);
+    overflow: hidden;
+}
+
+@media (max-width: 300px) {
+    .grid__crop-adjust-info {
+        display: none;
+    }
+    .image-container__focus-area-clickable {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 414px) {
+    .grid__crop-adjust-info {
+        font-size: .7em;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .grid--strict .image-container {
+        height: calc((100vw - 20px) / 3);
+        width: calc((100vw - 20px) / 3);
+    }
+}
+
+@media (min-width: 641px) and (max-width: 840px) {
+    .grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .grid--strict .image-container {
+        height: calc((100vw - 20px) / 4);
+        width: calc((100vw - 20px) / 4);
+    }
+}
+
+@media (min-width: 841px) and (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .grid--strict .image-container {
+        height: calc((100vw - 20px) / 5);
+        width: calc((100vw - 20px) / 5);
+    }
+}
+
+@media (min-width: 1025px) {
+    .grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .grid--strict .image-container {
+        height: calc(1024px / 5);
+        width: calc(1024px / 5);
+    }
+}

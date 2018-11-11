@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <title>CSS Grid Gallery / Lazy Loading Example by ZOODUCK on 02 October 2018</title>
+        
+        <meta name="author" content="zooduck, wesley pumpkinhead">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel="stylesheet" href="styles/article.css">
+        <link rel="stylesheet" href="styles/grid.css">
+
+    </head>
+
+    <body>
+
+        <noscript>
+            <div id="javascriptDisabledWarning">
+                <h1>NO JAVASCRIPT SUPPORT DETECTED</h1>
+            </div>
+        </noscript>
+
+        <article>
+
+            <h1>Lazy Loading Responsive Images in a CSS Grid Gallery using the &lt;picture&gt; element, Intersection Observer API and Image Placeholders</h1>
+            
+            <blockquote>By ZOODUCK on 02 October 2018</blockquote>
+
+            <section>
+                <p>
+                    This CSS Grid Gallery Demo illustrates use of the new <code>IntersectionObserver API</code> to load images
+                    when they appear in the viewport (and not before).
+                </p>
+                <p>
+                    In this example I have set the <code>threshold</code> property of the <code>IntersectionObserver</code> to <code>0.5</code>.
+                    The observer handler function (assigned to the <code>IntersectionObserver</code> instance) is called when
+                    50% or more of its target element (in this case, the image) is visible in the viewport.
+                </p>
+            </section>
+
+            <h1>Browser Compatibility</h1>
+            <section>
+
+                <h4>Chrome / Firefox / Edge</h4>
+                <ul>
+                    <li>
+                        <span>Responsive Images</span>
+                        <i class="material-icons">check</i>
+                    </li>
+                    <li>
+                        <span>Art Direction</span>
+                        <i class="material-icons">check</i>
+                    </li>
+                    <li>
+                        <span>Lazy Loading (using IntersectionObserver)</span>
+                        <i class="material-icons">check</i>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>Safari</h4>
+                <ul>
+                        <li>
+                            <span>Responsive Images</span>
+                            <i class="material-icons">check</i>
+                        </li>
+                        <li>
+                            <span>Art Direction</span>
+                            <i class="material-icons">check</i>
+                        </li>
+                        <li>
+                            <del>Lazy Loading (using IntersectionObserver)</del>
+                            <i class="material-icons">clear</i>
+                        </li>
+                    </ul>
+            </section>
+
+            <section>
+                <h4>IE</h4>
+                <ul>
+                    <li>
+                        <del>Responsive Images</del>
+                        <i class="material-icons">clear</i>
+                    </li>
+                    <li>
+                        <del>Art Direction</del>
+                        <i class="material-icons">clear</i>
+                    </li>
+                    <li>
+                        <del>Lazy Loading (using IntersectionObserver)</del>
+                        <i class="material-icons">clear</i>
+                    </li>
+                </ul>
+            </section>
+
+            <h1>Scroll<br>Scroll<br>Scroll<br>Scroll<br>Scroll...</h1>
+
+        </article>
+
+        
+        <!-- grid mode ctrls -->
+        <div class="grid-mode-ctrls">
+            <form>
+                <h3>Grid Row Height</h3>
+                <label>
+                    <span>Auto</span>
+                    <input type="radio" name="grid-rows-fixed" value="0">
+                    <i class="material-icons">radio_button_checked</i>
+                    <i class="material-icons">radio_button_unchecked</i>
+                </label>
+                <label>
+                    <span>Fixed</span>
+                    <input type="radio" name="grid-rows-fixed" value="1" checked>
+                    <i class="material-icons">radio_button_checked</i>
+                    <i class="material-icons">radio_button_unchecked</i>
+                </label>
+            </form>
+        </div>
+        <!-- // -->
+
+        <!-- crop adjust info -->
+        <div class="grid grid--strict" id="dynamicGalleryGrid">
+            <div class="grid__crop-adjust-info">
+                <span>Use <i class="material-icons">adjust</i> to change crop in "Fixed" mode</span>
+            </div>
+        </div>
+
+        <script src="scripts/fakeImageAPI.js"></script>
+        <script src='scripts/ImageContainer.model.js'></script>
+        <script src="./scripts/gallery.js"></script>
+        <script src="./scripts/gridCtrls.js"></script>
+        <script src="./scripts/lazyLoad.js"></script>
+
+    </body>
+
+</html>
